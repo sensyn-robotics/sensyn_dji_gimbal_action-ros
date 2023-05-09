@@ -1,1 +1,1 @@
-# -sensyn_dji_gimbal_action-ros
+# sensyn_dji_gimbal_action-ros
