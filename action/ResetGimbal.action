@@ -1,8 +1,0 @@
-# Define the goal
-bool enable # false=disable true=enable
----
-# Define the result
-bool done
----
-# Define a feedback message
-float32 rate

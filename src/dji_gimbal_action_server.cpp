@@ -1,10 +1,11 @@
 #include <ros/ros.h>
-#include <std_msgs/Bool.h>
 #include <geometry_msgs/QuaternionStamped.h>
 
 #include <dji_osdk_ros/dji_vehicle_node.h>
 #include <actionlib/server/simple_action_server.h>
 #include <sensyn_dji_gimbal_action/ControlGimbalAction.h>
+
+
 
 
 class GimbalActionServer
@@ -88,7 +89,6 @@ protected:
 
   double attitude_yaw;
 
-  ros::Publisher pub_enable_tunnel_mode = nh_.advertise<std_msgs::Bool> ("/enable_tunnel_mode", 1, true);
   ros::Subscriber sub_attitude = nh_.subscribe("/dji_osdk_ros/attitude", 1, &GimbalActionServer::attitude_callback, this);
 
 };
