@@ -3,10 +3,6 @@
 #include <actionlib/server/simple_action_server.h>
 #include <sensyn_dji_gimbal_action/ShootCameraAction.h>
 
-#include <dji_osdk_ros/CameraStartShootSinglePhoto.h>
-#include <dji_osdk_ros/CameraStartShootIntervalPhoto.h>
-#include <dji_osdk_ros/CameraStopShootPhoto.h>
-#include <dji_osdk_ros/CameraRecordVideoAction.h>
 
 class CameraActionServer
 {

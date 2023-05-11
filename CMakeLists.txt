@@ -48,6 +48,7 @@ add_action_files(
   FILES
   ControlGimbal.action
   ShootCamera.action
+  CameraParam.action
 )
 
 generate_messages(
@@ -113,6 +114,7 @@ include_directories(
 #add_executable(listener src/listener.cpp)
 add_executable(dji_gimbal_action_server src/dji_gimbal_action_server.cpp)
 add_executable(dji_camera_action_server src/dji_camera_action_server.cpp)
+add_executable(dji_camera_param_action_server src/dji_camera_param_action_server.cpp)
 
 
 
@@ -135,6 +137,7 @@ add_executable(dji_camera_action_server src/dji_camera_action_server.cpp)
 #target_link_libraries(listener ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 target_link_libraries(dji_gimbal_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 target_link_libraries(dji_camera_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
+target_link_libraries(dji_camera_param_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 
 
 link_directories(${PCL_LIBRARY_DIRS})
