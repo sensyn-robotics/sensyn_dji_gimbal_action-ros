@@ -36,10 +36,13 @@ public:
     gimbal_action.request.is_reset = goal.is_reset;
     gimbal_action.request.pitch = goal.pitch;
     gimbal_action.request.roll = goal.roll;
-    gimbal_action.request.yaw = goal.yaw;
+    gimbal_action.request.yaw = - goal.yaw - attitude_yaw;
     gimbal_action.request.time = goal.time;
     gimbal_action.request.payload_index = 0;
     gimbal_action.request.rotationMode = 0;
+
+    if(gimbal_action.request.yaw>180){gimbal_action.request.yaw-=360;}
+    if(gimbal_action.request.yaw<-180){gimbal_action.request.yaw+=360;}
 
     sensyn_dji_gimbal_action::ControlGimbalResult result_controlGimbal;
     if (gimbal_action_client_.call(gimbal_action)) {
@@ -69,7 +72,7 @@ void attitude_callback(geometry_msgs::QuaternionStamped attitude){
   tf::Matrix3x3 m(q);
   double roll, pitch, yaw;
   m.getRPY(roll, pitch, yaw);
-  attitude_yaw = yaw;
+  attitude_yaw = yaw*180/M_PI - 90;
   ROS_INFO("%f: attitude_yaw", attitude_yaw);
   return;
 }
