@@ -53,6 +53,7 @@ public:
         ROS_ERROR_STREAM(" gimbal_action failed!");
         result_controlGimbal.done = false;
     }
+    ros::Duration(goal.time+1.0).sleep();
     as_controlGimbal.setSucceeded(result_controlGimbal);
   }
 

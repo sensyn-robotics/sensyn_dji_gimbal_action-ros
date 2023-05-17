@@ -47,6 +47,7 @@ public:
           ROS_ERROR_STREAM(" zoom failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(3.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }
@@ -64,6 +65,7 @@ public:
           ROS_ERROR_STREAM(" zoom_point failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(3.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }
@@ -80,6 +82,7 @@ public:
           ROS_ERROR_STREAM(" focus failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(1.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
     }
     else if(goal.mode=="EV"){
@@ -94,6 +97,7 @@ public:
           ROS_ERROR_STREAM(" EV failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(1.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }
@@ -109,6 +113,7 @@ public:
           ROS_ERROR_STREAM(" aperture failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(1.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }
@@ -124,6 +129,7 @@ public:
           ROS_ERROR_STREAM(" ISO failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(1.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }
@@ -139,6 +145,7 @@ public:
           ROS_ERROR_STREAM(" shutter_speed failed!");
           result_cameraParam.done = false;
       }
+      ros::Duration(1.0).sleep();
       as_cameraParam.setSucceeded(result_cameraParam);
 
     }

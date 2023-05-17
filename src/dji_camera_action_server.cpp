@@ -43,6 +43,7 @@ public:
           ROS_ERROR_STREAM(" record failed!");
           result_shootCamera.done = false;
       }
+      ros::Duration(2.0).sleep();
       as_shootCamera.setSucceeded(result_shootCamera);
 
     }
@@ -57,6 +58,7 @@ public:
           ROS_ERROR_STREAM(" camera_single_shoot failed!");
           result_shootCamera.done = false;
       }
+      ros::Duration(2.0).sleep();
       as_shootCamera.setSucceeded(result_shootCamera);
 
     }
@@ -73,6 +75,7 @@ public:
           ROS_ERROR_STREAM(" camera_interval_shoot failed!");
           result_shootCamera.done = false;
       }
+      ros::Duration(goal.time_interval_of_interval_shoot * goal.num_of_interval_shoot + 2.0).sleep();
       as_shootCamera.setSucceeded(result_shootCamera);
     }
     else if(goal.mode=="camera_stop"){
@@ -85,6 +88,7 @@ public:
           ROS_ERROR_STREAM(" camera_stop failed!");
           result_shootCamera.done = false;
       }
+      ros::Duration(2.0).sleep();
       as_shootCamera.setSucceeded(result_shootCamera);
 
     }
