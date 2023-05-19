@@ -12,14 +12,17 @@
 
 #include <action_type_definition.h>
 
+using namespace actionlib;
+using namespace sensyn_dji_gimbal_action;
+using namespace std;
 
 namespace sr {
 
-    class GimbalCameraActionClient : public actionlib::SimpleActionClient<sensyn_dji_gimbal_action::GimbalCameraAction> {
+    class GimbalCameraActionClient : public SimpleActionClient<sensyn_dji_gimbal_action::GimbalCameraAction> {
         using SimpleActionClient::SimpleActionClient;
 
     public:
-        // void doneCb(const actionlib::SimpleClientGoalState &state, GimbalCameraResult &result);
+        void doneCb(const actionlib::SimpleClientGoalState &state, GimbalCameraResult &result);
 
         bool requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom) ;
 

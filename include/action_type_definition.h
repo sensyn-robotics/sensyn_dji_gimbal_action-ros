@@ -2,7 +2,7 @@
 // #ifndef ELAS_ACTION_TYPE_DIFINITION_H
 // #define ELAS_ACTION_TYPE_DIFINITION_H
 // with pose
-enum class RobotAction_Type : int {
+enum class GimbalCameraActionType : int {
     GoToPoint, // position , time=0
     FollowPath, // path
     Stop, // time =x ,hovering
@@ -18,7 +18,7 @@ enum class RobotAction_Type : int {
     StopRecordVideo
 };
 
-std::map<int, std::string> map_RobotAction_Type = {
+std::map<int, std::string> map_GimbalCameraAction = {
         {0, "GoToPoint"},
         {1, "FollowPath"},
         {2, "Stop"},
@@ -35,10 +35,10 @@ std::map<int, std::string> map_RobotAction_Type = {
 
 };
 
-enum class SensorAction_Type {
-    None,
-    Camera,
-    LiDAR
-};
+// enum class SensorAction_Type {
+//     None,
+//     Camera,
+//     LiDAR
+// };
 
 // #endif //ELAS_ACTION_TYPE_DIFINITION_H

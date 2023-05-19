@@ -47,20 +47,20 @@ public:
 
     uint8_t task_id = goal.task_id;
 
-    RobotAction_Type action_type = RobotAction_Type(task_id);
+    GimbalCameraActionType action_type = GimbalCameraActionType(task_id);
 
     switch (action_type) {
-        case RobotAction_Type::AimCamera:
+        case GimbalCameraActionType::AimCamera:
             return ActionAimCamera(goal);
-        case RobotAction_Type::TargetCamera:
+        case GimbalCameraActionType::TargetCamera:
             return ActionTargetCamera(goal);
-        case RobotAction_Type::TakePicture:
+        case GimbalCameraActionType::TakePicture:
             return ActionTakePicture(goal);
-        case RobotAction_Type::RecordVideo:
+        case GimbalCameraActionType::RecordVideo:
             return ActionRecordVideo(goal);
-        case RobotAction_Type::StartRecordVideo:
+        case GimbalCameraActionType::StartRecordVideo:
             return ActionStartRecordVideo(goal);
-        case RobotAction_Type::StopRecordVideo:
+        case GimbalCameraActionType::StopRecordVideo:
             return ActionStopRecordVideo(goal);
         default:
             return false;

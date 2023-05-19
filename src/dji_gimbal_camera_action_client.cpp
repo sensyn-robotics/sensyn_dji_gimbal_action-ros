@@ -21,7 +21,7 @@
     bool sr::GimbalCameraActionClient::requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom) {
 
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
-        goal.task_id = int(RobotAction_Type::AimCamera);
+        goal.task_id = (int)(GimbalCameraActionType::AimCamera);
         goal.pitch = pitch;
         goal.roll = roll;
         goal.yaw = yaw;
@@ -43,7 +43,7 @@
     bool sr::GimbalCameraActionClient::requestTaskTakePicture(const string camera_setting) {
 
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
-        goal.task_id = int(RobotAction_Type::TakePicture);
+        goal.task_id = (int)(GimbalCameraActionType::TakePicture);
         goal.camera_setting = camera_setting;
 
         sendGoal(goal);
@@ -61,7 +61,7 @@
 
     bool sr::GimbalCameraActionClient::requestTaskStartRecordVideo(const string camera_setting) {
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
-        goal.task_id = int(RobotAction_Type::StartRecordVideo);
+        goal.task_id = (int)(GimbalCameraActionType::StartRecordVideo);
         goal.camera_setting = camera_setting;
 
         sendGoal(goal);
@@ -72,7 +72,7 @@
 
     bool sr::GimbalCameraActionClient::requestTaskStopRecordVideo() {
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
-        goal.task_id = int(RobotAction_Type::StopRecordVideo);
+        goal.task_id = (int)(GimbalCameraActionType::StopRecordVideo);
 
         sendGoal(goal);
         waitForResult();
