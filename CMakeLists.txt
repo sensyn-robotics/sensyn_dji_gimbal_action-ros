@@ -49,12 +49,14 @@ add_action_files(
   ControlGimbal.action
   ShootCamera.action
   CameraParam.action
+  GimbalCamera.action
 )
 
 generate_messages(
   DEPENDENCIES
   std_msgs  # Or other packages containing msgs
   actionlib_msgs
+  geometry_msgs
 )
 
 ################################################
@@ -70,9 +72,10 @@ generate_messages(
 ###################################
 ## catkin specific configuration ##
 ###################################
+catkin_package(INCLUDE_DIRS include)
 catkin_package(
-# INCLUDE_DIRS include
- LIBRARIES fujita_tunnel
+INCLUDE_DIRS include
+ LIBRARIES ${PROJECT_NAME}
 #  DEPENDS system_lib
  CATKIN_DEPENDS
 # roscpp
@@ -88,8 +91,7 @@ dji_osdk_ros
 ###########
 ## Build ##
 ###########
-include_directories(
- include
+include_directories(include
  ${catkin_INCLUDE_DIRS}
  ${PCL_INCLUDE_DIRS}
  ${EIGEN3_INCLUDE_DIR}
@@ -116,6 +118,14 @@ add_executable(dji_gimbal_action_server src/dji_gimbal_action_server.cpp)
 add_executable(dji_camera_action_server src/dji_camera_action_server.cpp)
 add_executable(dji_camera_param_action_server src/dji_camera_param_action_server.cpp)
 
+add_executable(dji_gimbal_camera_action_server src/dji_gimbal_camera_action_server.cpp)
+
+add_library(${PROJECT_NAME} src/dji_gimbal_camera_action_client.cpp )
+
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
+
 
 
 
@@ -138,6 +148,8 @@ add_executable(dji_camera_param_action_server src/dji_camera_param_action_server
 target_link_libraries(dji_gimbal_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 target_link_libraries(dji_camera_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 target_link_libraries(dji_camera_param_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
+target_link_libraries(dji_gimbal_camera_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
+# target_link_libraries(dji_gimbal_camera_action_client ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 
 
 link_directories(${PCL_LIBRARY_DIRS})

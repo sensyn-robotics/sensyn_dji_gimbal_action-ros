@@ -1,0 +1,25 @@
+# Define the goal
+
+uint8 task_id
+
+# pitch angle in degree, unit : deg
+float32 pitch
+
+# roll angle in degree, unit : deg
+float32 roll
+
+# yaw angle in degree, unit : deg
+float32 yaw
+
+float64 zoom
+
+geometry_msgs/PoseStamped target_point
+
+string camera_setting
+
+---
+# Define the result
+bool done
+---
+# Define a feedback message
+float32 rate
