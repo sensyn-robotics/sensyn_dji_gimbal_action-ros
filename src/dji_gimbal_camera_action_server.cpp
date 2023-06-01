@@ -20,6 +20,7 @@ public:
     as_controlGimbalCamera.registerGoalCallback(boost::bind(&GimbalCameraActionServer::goalCB_controlGimbalCamera, this));
     as_controlGimbalCamera.registerPreemptCallback(boost::bind(&GimbalCameraActionServer::preemptCB_controlGimbalCamera, this));
     as_controlGimbalCamera.start();
+    ROS_INFO("%s: as_controlGimbalCamera.start!!!", action_name_.c_str());
     
   }
 
@@ -185,7 +186,7 @@ void attitude_callback(geometry_msgs::QuaternionStamped attitude){
   double roll, pitch, yaw;
   m.getRPY(roll, pitch, yaw);
   attitude_yaw = yaw*180/M_PI - 90;
-  ROS_INFO("%f: attitude_yaw", attitude_yaw);
+  //ROS_INFO("%f: attitude_yaw", attitude_yaw);
   return;
 }
   
@@ -239,7 +240,7 @@ protected:
 int main (int argc, char** argv)
 {
   // Initialize ROS
-  ros::init (argc, argv, "dji_gimbal_action_server");
+  ros::init (argc, argv, "dji_gimbal_camera_action_server");
 
   GimbalCameraActionServer server(ros::this_node::getName());
   ros::spin();
