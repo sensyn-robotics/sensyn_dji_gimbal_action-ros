@@ -28,7 +28,6 @@
         goal.zoom = zoom;
 
         sendGoal(goal);
-        waitForResult();
         return true;
     }
 
@@ -47,7 +46,6 @@
         goal.camera_setting = camera_setting;
 
         sendGoal(goal);
-        waitForResult();
         return true;
     }
 
@@ -65,7 +63,6 @@
         goal.camera_setting = camera_setting;
 
         sendGoal(goal);
-        waitForResult();
         return true;
     }
 
@@ -75,7 +72,6 @@
         goal.task_id = (int)(GimbalCameraActionType::StopRecordVideo);
 
         sendGoal(goal);
-        waitForResult();
         return true;
     }
 

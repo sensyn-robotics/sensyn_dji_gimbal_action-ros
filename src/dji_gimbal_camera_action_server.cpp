@@ -122,17 +122,17 @@ bool ActionTakePicture(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
   //setting param is coming soon...
 
   camera_start_shoot_single_photo.request.payload_index=0;
-  sensyn_dji_gimbal_action::GimbalCameraResult result;
+  bool result;
   if (camera_single_action_client_.call(camera_start_shoot_single_photo)) {
       ROS_INFO_STREAM(" camera_single_shoot success!");
 
-      result.done = true;
+      result = true;
   } else {
       ROS_ERROR_STREAM(" camera_single_shoot failed!");
-      result.done = false;
+      result = false;
   }
   ros::Duration(2.0).sleep();
-  as_controlGimbalCamera.setSucceeded(result);
+  return result;
 }
 
 bool ActionRecordVideo(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
