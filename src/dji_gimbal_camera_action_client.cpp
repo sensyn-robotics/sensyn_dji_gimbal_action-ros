@@ -18,6 +18,10 @@
         //     }
         // }
 
+    double sign(double A){
+        return (A>=0)-(A<0);
+    }   
+
     bool sr::GimbalCameraActionClient::requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom) {
 
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
@@ -27,13 +31,40 @@
         goal.yaw = yaw;
         goal.zoom = zoom;
 
+
+
         sendGoal(goal);
         return true;
     }
 
-    bool sr::GimbalCameraActionClient::requestTaskTargetCamera() {
+    bool sr::GimbalCameraActionClient::requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom) {
 
-        //coming soon...
+        sensyn_dji_gimbal_action::GimbalCameraGoal goal;
+
+        goal.task_id = (int)(GimbalCameraActionType::AimCamera);
+        goal.roll = roll;
+        goal.zoom = zoom;
+
+        //spherical coordinate system to pitch and yaw
+        double radius = sqrt(x*x + y*y + z*z);
+        double epsilon = 0.001;
+        if (radius < epsilon){
+            goal.pitch = 0.;
+            goal.yaw =  0.;
+        }
+        else if ( (x*x + y*y) < epsilon){
+            goal.pitch = asin(z/radius) * 180 / M_PI;
+            goal.yaw =  0.;
+        }
+        else{
+            goal.pitch = asin(z/radius) * 180 / M_PI;
+            goal.yaw =  sign(y) * acos(x / sqrt(x*x + y*y)) * 180 / M_PI;
+        }
+             
+
+        std::cout << "pitch = "<<goal.pitch << ", roll = "<<goal.roll << ",. yaw = "<<goal.yaw <<std::endl;
+
+        sendGoal(goal);
 
         return true;
     }
