@@ -1,0 +1,6 @@
+<launch>
+  <node name="dji_gimbal_action_server" pkg="sensyn_dji_gimbal_action" type="dji_gimbal_action_server" />
+  <node name="dji_camera_action_server" pkg="sensyn_dji_gimbal_action" type="dji_camera_action_server" />
+  <node name="dji_camera_param_action_server" pkg="sensyn_dji_gimbal_action" type="dji_camera_param_action_server" />
+    
+</launch>

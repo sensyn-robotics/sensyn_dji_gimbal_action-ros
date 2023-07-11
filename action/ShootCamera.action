@@ -1,0 +1,16 @@
+# Define the goal
+
+#"video", "camera_single_shoot", "camera_interval_shoot", "camera_stop"
+string mode
+
+uint8 video_start_stop #0=stop, 1=start
+
+uint8 num_of_interval_shoot
+int16 time_interval_of_interval_shoot
+
+---
+# Define the result
+bool done
+---
+# Define a feedback message
+float32 rate
