@@ -102,7 +102,7 @@
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::StopRecordVideo);
 
-        sendGoal(goal);
+        // sendGoal(goal);
         return true;
     }
 

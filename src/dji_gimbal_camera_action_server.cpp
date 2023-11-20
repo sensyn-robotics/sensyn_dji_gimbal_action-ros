@@ -95,7 +95,7 @@ bool ActionAimCamera(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
   gimbal_action.request.roll = goal.roll + roll_offset;
   gimbal_action.request.yaw = - goal.yaw + yaw_offset;
   // gimbal_action.request.yaw = - goal.yaw - attitude_yaw;
-  gimbal_action.request.time = 1.0;
+  gimbal_action.request.time = 0.2;
   gimbal_action.request.payload_index = 0;
   gimbal_action.request.rotationMode = 0;  
 
