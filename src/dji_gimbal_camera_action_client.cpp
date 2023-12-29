@@ -22,7 +22,7 @@
         return (A>=0)-(A<0);
     }   
 
-    bool sr::GimbalCameraActionClient::requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom) {
+    bool sr::GimbalCameraActionClient::requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom, const double time) {
 
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::AimCamera);
@@ -30,20 +30,29 @@
         goal.roll = roll;
         goal.yaw = yaw;
         goal.zoom = zoom;
-
-
+        goal.time = time;
+        goal.is_reset = true;
 
         sendGoal(goal);
         return true;
     }
 
-    bool sr::GimbalCameraActionClient::requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom) {
+    bool sr::GimbalCameraActionClient::requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom, const double time) {
+
+        sr::GimbalCameraActionClient::requestTaskTargetCamera(roll, x,y,z, zoom, time, true);
+
+        return true;
+    }
+    bool sr::GimbalCameraActionClient::requestTaskTargetCamera(const double roll, const double x, const double y, const double z,
+     const double zoom, const double time, const bool is_reset) {
 
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
 
         goal.task_id = (int)(GimbalCameraActionType::AimCamera);
         goal.roll = roll;
         goal.zoom = zoom;
+        goal.time = time;
+        goal.is_reset = is_reset;
 
         //spherical coordinate system to pitch and yaw
         double radius = sqrt(x*x + y*y + z*z);
@@ -102,7 +111,7 @@
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::StopRecordVideo);
 
-        // sendGoal(goal);
+        sendGoal(goal);
         return true;
     }
 

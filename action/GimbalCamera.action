@@ -2,6 +2,12 @@
 
 uint8 task_id
 
+###################
+# aim camera
+###################
+
+bool is_reset
+
 # pitch angle in degree, unit : deg
 float32 pitch
 
@@ -11,7 +17,11 @@ float32 roll
 # yaw angle in degree, unit : deg
 float32 yaw
 
+#execution time, unit : second
+float64 time
+
 float64 zoom
+
 
 geometry_msgs/PoseStamped target_point
 

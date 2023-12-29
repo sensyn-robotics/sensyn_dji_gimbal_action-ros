@@ -71,21 +71,23 @@ public:
 bool ActionAimCamera(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
 
   //first reset gimbal
-  gimbal_action.request.is_reset = true;
-  double roll_offset = 0., pitch_offset = 0., yaw_offset = 0.;
-
+  gimbal_action.request.is_reset = goal.is_reset;
+  static double roll_offset = 0., pitch_offset = 0., yaw_offset = 0.;
   bool result;
-  if (gimbal_action_client_.call(gimbal_action)) {
-      ROS_INFO_STREAM(" gimbal_action reset success!");
-      roll_offset = gimbal_action.response.roll;
-      pitch_offset = gimbal_action.response.pitch;
-      yaw_offset = gimbal_action.response.yaw;
+  if (goal.is_reset) {
+    
+    if (gimbal_action_client_.call(gimbal_action)) {
+        ROS_INFO_STREAM(" gimbal_action reset success!");
+        roll_offset = gimbal_action.response.roll;
+        pitch_offset = gimbal_action.response.pitch;
+        yaw_offset = gimbal_action.response.yaw;
 
-      result = true;
-  } else {
-      ROS_ERROR_STREAM(" gimbal_action reset failed!");
-      result = false;
-      return result;
+        result = true;
+    } else {
+        ROS_ERROR_STREAM(" gimbal_action reset failed!");
+        result = false;
+        return result;
+    }
   }
 
   //rotate gimbal
@@ -95,7 +97,7 @@ bool ActionAimCamera(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
   gimbal_action.request.roll = goal.roll + roll_offset;
   gimbal_action.request.yaw = - goal.yaw + yaw_offset;
   // gimbal_action.request.yaw = - goal.yaw - attitude_yaw;
-  gimbal_action.request.time = 0.2;
+  gimbal_action.request.time = goal.time;
   gimbal_action.request.payload_index = 0;
   gimbal_action.request.rotationMode = 0;  
 
@@ -114,18 +116,22 @@ bool ActionAimCamera(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
   ros::Duration(1.0).sleep();
 
   //zoom
-  camera_task_set_zoom_para.request.factor = goal.zoom;
+  static double zoom_old = 1.;
+  if (abs(zoom_old - goal.zoom) > 0.01) {
 
-  if (zoom_client_.call(camera_task_set_zoom_para)) {
-      ROS_INFO_STREAM(" zoom success!");
+    zoom_old = goal.zoom;
+    camera_task_set_zoom_para.request.factor = goal.zoom;
 
-      result = true;
-  } else {
-      ROS_ERROR_STREAM(" zoom failed!");
-      result = false;
-  }
-  ros::Duration(3.0).sleep();
+    if (zoom_client_.call(camera_task_set_zoom_para)) {
+        ROS_INFO_STREAM(" zoom success!");
 
+        result = true;
+    } else {
+        ROS_ERROR_STREAM(" zoom failed!");
+        result = false;
+    }
+    ros::Duration(3.0).sleep();
+  } 
   return result;
 
 }

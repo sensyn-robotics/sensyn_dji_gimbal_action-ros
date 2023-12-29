@@ -24,9 +24,11 @@ namespace sr {
     public:
         void doneCb(const actionlib::SimpleClientGoalState &state, GimbalCameraResult &result);
 
-        bool requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom) ;
+        bool requestTaskAimCamera(const double roll, const double pitch, const double yaw, const double zoom, const double time) ;
 
-        bool requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom) ;
+        bool requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom, const double time) ;
+
+        bool requestTaskTargetCamera(const double roll, const double x, const double y, const double z, const double zoom, const double time, const bool is_reset) ;
 
         bool requestTaskTakePicture(const string camera_setting);
 
