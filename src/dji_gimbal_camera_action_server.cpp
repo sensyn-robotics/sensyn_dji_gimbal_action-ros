@@ -113,7 +113,7 @@ bool ActionAimCamera(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
       result = false;
       return result;
   }
-  ros::Duration(1.0).sleep();
+  ros::Duration(goal.time).sleep();
 
   //zoom
   static double zoom_old = 1.;
@@ -155,7 +155,7 @@ bool ActionTakePicture(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
       ROS_ERROR_STREAM(" camera_single_shoot failed!");
       result = false;
   }
-  ros::Duration(2.0).sleep();
+  ros::Duration(1.0).sleep();
   return result;
 }
 
@@ -179,7 +179,7 @@ bool ActionStartRecordVideo(const sensyn_dji_gimbal_action::GimbalCameraGoal &go
       ROS_ERROR_STREAM(" record failed!");
       result = false;
   }
-  ros::Duration(2.0).sleep();
+  ros::Duration(1.0).sleep();
   return result;
 
 }
@@ -195,7 +195,7 @@ bool ActionStopRecordVideo(const sensyn_dji_gimbal_action::GimbalCameraGoal &goa
       ROS_ERROR_STREAM(" record failed!");
       result = false;
   }
-  ros::Duration(2.0).sleep();
+  ros::Duration(1.0).sleep();
   return result;
 }
 
