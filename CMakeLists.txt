@@ -46,9 +46,9 @@ find_package(Eigen3 REQUIRED)
 
 add_action_files(
   FILES
-  ControlGimbal.action
-  ShootCamera.action
-  CameraParam.action
+  #ControlGimbal.action
+  #ShootCamera.action
+  #CameraParam.action
   GimbalCamera.action
 )
 
@@ -112,12 +112,6 @@ include_directories(include
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/fujita_tunnel_node.cpp)
 
-#add_executable(talker src/talker.cpp)
-#add_executable(listener src/listener.cpp)
-add_executable(dji_gimbal_action_server src/dji_gimbal_action_server.cpp)
-add_executable(dji_camera_action_server src/dji_camera_action_server.cpp)
-add_executable(dji_camera_param_action_server src/dji_camera_param_action_server.cpp)
-
 add_executable(dji_gimbal_camera_action_server src/dji_gimbal_camera_action_server.cpp)
 
 add_library(${PROJECT_NAME} src/dji_gimbal_camera_action_client.cpp )
@@ -143,11 +137,7 @@ target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} dji_osdk_ros)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-#target_link_libraries(talker ${catkin_LIBRARIES} ${PCL_LIBRARIES})
-#target_link_libraries(listener ${catkin_LIBRARIES} ${PCL_LIBRARIES})
-target_link_libraries(dji_gimbal_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
-target_link_libraries(dji_camera_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
-target_link_libraries(dji_camera_param_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
+
 target_link_libraries(dji_gimbal_camera_action_server ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 # target_link_libraries(dji_gimbal_camera_action_client ${catkin_LIBRARIES} ${PCL_LIBRARIES} dji_osdk_ros)
 
