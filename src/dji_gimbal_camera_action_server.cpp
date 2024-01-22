@@ -155,7 +155,7 @@ bool ActionTakePicture(const sensyn_dji_gimbal_action::GimbalCameraGoal &goal){
       ROS_ERROR_STREAM(" camera_single_shoot failed!");
       result = false;
   }
-  ros::Duration(1.0).sleep();
+  ros::Duration(3.0).sleep();
   return result;
 }
 
