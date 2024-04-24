@@ -5,7 +5,7 @@
 #include <actionlib/server/simple_action_server.h>
 #include <sensyn_dji_gimbal_action/GimbalCameraAction.h>
 
-#include <action_type_definition.h>
+#include <sensyn_dji_gimbal_action/action_type_definition.h>
 
 class GimbalCameraActionServer
 {

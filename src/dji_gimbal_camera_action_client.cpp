@@ -1,4 +1,4 @@
-#include <dji_gimbal_camera_action_client.h>
+#include <sensyn_dji_gimbal_action/dji_gimbal_camera_action_client.h>
 
 
 // class GimbalCameraActionClient

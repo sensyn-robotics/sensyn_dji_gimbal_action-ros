@@ -10,7 +10,7 @@
 #include <dji_osdk_ros/dji_vehicle_node.h>
 #include <sensyn_dji_gimbal_action/GimbalCameraAction.h>
 
-#include <action_type_definition.h>
+#include <sensyn_dji_gimbal_action/action_type_definition.h>
 
 using namespace actionlib;
 using namespace sensyn_dji_gimbal_action;
