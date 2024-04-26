@@ -21,9 +21,6 @@ find_package(Eigen3 REQUIRED)
 
 add_action_files(
   FILES
-  #ControlGimbal.action
-  #ShootCamera.action
-  #CameraParam.action
   GimbalCamera.action
 )
 
