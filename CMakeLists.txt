@@ -60,6 +60,7 @@ include_directories(include
 
 
 add_executable(dji_gimbal_camera_action_server src/dji_gimbal_camera_action_server.cpp)
+add_dependencies(dji_gimbal_camera_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(dji_gimbal_camera_action_server ${catkin_LIBRARIES})
 
 
