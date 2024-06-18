@@ -1,0 +1,13 @@
+
+<launch>
+
+  <node name="dji_gimbal_camera_action_server" pkg="sensyn_dji_gimbal_action" type="dji_gimbal_camera_action_server" output="screen">
+  </node>
+
+  <node name="test_gimbal_client" pkg="sensyn_dji_gimbal_action" type="test_gimbal_client" output="screen">
+  </node>
+
+  <test test-name="test_gimbal_server" type="test_gimbal_server.py" pkg="sensyn_dji_gimbal_action"/>
+
+
+</launch>
