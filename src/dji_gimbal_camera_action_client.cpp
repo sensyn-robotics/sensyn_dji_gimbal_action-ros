@@ -32,6 +32,7 @@
         goal.zoom = zoom;
         goal.time = time;
         goal.is_reset = true;
+        ROS_INFO ("requestTaskAimCamera: pitch = %f, roll = %f, yaw = %f, zoom = %f, time = %f", pitch, roll, yaw, zoom, time);
 
         sendGoal(goal);
         return true;
@@ -84,6 +85,7 @@
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::TakePicture);
         goal.camera_setting = camera_setting;
+        ROS_INFO ("requestTaskTakePicture: camera_setting = %s", camera_setting.c_str());
 
         sendGoal(goal);
         return true;
@@ -101,6 +103,7 @@
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::StartRecordVideo);
         goal.camera_setting = camera_setting;
+        ROS_INFO ("requestTaskStartRecordVideo: camera_setting = %s", camera_setting.c_str());
 
         sendGoal(goal);
         return true;
@@ -110,6 +113,7 @@
     bool sr::GimbalCameraActionClient::requestTaskStopRecordVideo() {
         sensyn_dji_gimbal_action::GimbalCameraGoal goal;
         goal.task_id = (int)(GimbalCameraActionType::StopRecordVideo);
+        ROS_INFO ("requestTaskStopRecordVideo");
 
         sendGoal(goal);
         return true;

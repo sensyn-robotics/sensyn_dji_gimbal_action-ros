@@ -65,13 +65,15 @@ target_link_libraries(dji_gimbal_camera_action_server ${catkin_LIBRARIES})
 
 
 add_library(${PROJECT_NAME} src/dji_gimbal_camera_action_client.cpp )
-
 add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} )
 
+add_executable(test_gimbal_client test/test_gimbal_client.cpp)
+add_dependencies(test_gimbal_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_gimbal_client ${catkin_LIBRARIES} ${PROJECT_NAME})
 
-install(TARGETS dji_gimbal_camera_action_server ${PROJECT_NAME}
+
+install(TARGETS dji_gimbal_camera_action_server ${PROJECT_NAME} test_gimbal_client
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -79,3 +81,19 @@ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 FILES_MATCHING PATTERN "*.h"
 PATTERN ".svn" EXCLUDE
 )
+
+if(CATKIN_ENABLE_TESTING)
+   find_package(rostest REQUIRED)
+  add_rostest(test/test_gimbal.test)
+endif()
+
+#python script
+catkin_install_python(PROGRAMS 
+  test/test_gimbal_server.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+# files , directory
+install(DIRECTORY test/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/test
+)
+

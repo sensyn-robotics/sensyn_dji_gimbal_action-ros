@@ -15,12 +15,20 @@ public:
     as_controlGimbalCamera(nh_, name, false),
     action_name_(name)
   {
-    //register the goal and feeback callbacks
 
+    // wait gimbal_action_client_ to be ready
+    while (!gimbal_action_client_.waitForExistence(ros::Duration(5.0)))
+    {
+        ROS_INFO("Waiting for the gimbal_action_client_");
+    }
+    
+    //register the goal and feeback callbacks
     as_controlGimbalCamera.registerGoalCallback(boost::bind(&GimbalCameraActionServer::goalCB_controlGimbalCamera, this));
     as_controlGimbalCamera.registerPreemptCallback(boost::bind(&GimbalCameraActionServer::preemptCB_controlGimbalCamera, this));
     as_controlGimbalCamera.start();
     ROS_INFO("%s: as_controlGimbalCamera.start!!!", action_name_.c_str());
+
+    
     
   }
 
@@ -250,8 +258,6 @@ protected:
   dji_osdk_ros::CameraAperture camera_task_set_aperture;
   dji_osdk_ros::CameraISO camera_task_set_ISO;
   dji_osdk_ros::CameraShutterSpeed camera_task_set_shutter_speed;
-
-
 
   std::string action_name_;
 
